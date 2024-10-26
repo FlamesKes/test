@@ -1,0 +1,92 @@
+- hosts: host01
+  tasks:
+
+    - name: Скачивание зависимостей
+      apt:
+        name:
+        - ufw
+        - curl
+        - ca-certificates
+        - python3
+        - python3-psycopg2
+        state: present
+      become: yes
+
+    - name: Добавление ключа Postgresql
+      apt_key:
+        url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+        state: present
+      become: yes
+
+    - name: Добавление репозитория Postgresql
+      apt_repository:
+        repo: deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main
+        state: present
+      become: yes
+
+    - name: Обновление списка пакетов
+      apt:
+        update_cache: yes
+      become: yes
+
+    - name: Установка PostgreSQL
+      apt:
+        name:
+          - postgresql-16
+        state: present
+      become: yes
+
+    - name: Настройка брандмауэра
+      ufw:
+        rule: allow
+        port: '5432'
+      become: yes
+    
+    - name: Копирование схемы
+      copy:
+        src: ./schema.sql
+        dest: /tmp/schema.sql
+        owner: postgres
+        group: postgres
+        mode: '0777'
+      become: yes
+
+    - name: Разрешение подключения к бд извне
+      lineinfile:
+        path: /etc/postgresql/16/main/pg_hba.conf 
+        line: "host all all 0.0.0.0/0 scram-sha-256"
+        state: present
+      become: yes
+
+    - name: Настройка Postgresql
+      become: yes
+      lineinfile:
+        path: /etc/postgresql/16/main/postgresql.conf
+        line: "{{ item }}"
+        state: present
+      loop:
+        - "listen_addresses = '*'"
+        - "wal_log_hints = on"
+        - "archive_mode = on"
+        - "archive_command = 'cp %p /oracle/pg_data/archive/%f'"
+      become: yes
+
+    - name: Перезапуск Postgresql
+      become: yes
+      systemd:
+        name: postgresql
+        state: restarted
+        enabled: yes
+
+    - name: Создание тестовой бд
+      become: yes
+      become_user: postgres
+      postgresql_db:
+        name: test
+        state: present
+        login_user: postgres
+
+    - name: Создание repl_user и тестовой таблицы
+      become: yes
+      become_user: postgres
+      command: psql test -f /tmp/schema.sql

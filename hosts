@@ -1,0 +1,1 @@
+host01 ansible_host=192.168.31.112 ansible_user=nikita ansible_password=1
