@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Клиенты
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3>Клиенты</h3>
+    <br>
+    <table border = '2' class="demoTable" style="height: 54px; width: 1300px; border-style: outset;  margin-left: auto; margin-right: auto; " cellpadding="5">
+        <thead>
+            <tr style="height: 24px;">
+                <td style="width: 50px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Выбор</strong></span></td>
+                <td style="width: 240px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Фамилия</strong></span></td>
+                <td style="width: 240px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Имя</strong></span></td>
+                <td style="width: 240px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Отчество</strong></span></td>
+                <td style="width: 240px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Марка</strong></span></td>
+                <td style="width: 240px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Модель</strong></span></td>
+                <td style="width: 50px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Редактировать</strong></span></td>
+            </tr>
+        </thead>
+        <form method="post"3>
+            {% for el in clients_show %}
+                <tbody>
+                    <tr style="height: 36px;">
+                        <td style="width: 50px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);"><input type="checkbox" name="id" value='{{ el.id }}'><br></td>
+                        <td style="width: 240px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.f }}</td>
+                        <td style="width: 240px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.i }}</td>
+                        <td style="width: 240px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.o }}</td>
+                        <td style="width: 240px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.brand }}</td>
+                        <td style="width: 240px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.model }}</td>
+                        <td style="width: 50px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);"><a href="/clients/{{ el.id }}/update" class="btn btn-secondary btn-lg" value=""></a></td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+            <input type="submit" class="btn btn-danger" value="Удалить выбранные"><br>
+            <br>
+        </form>
+    </table>
+</div>
+{% endblock %}

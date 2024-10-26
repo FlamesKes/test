@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Печать
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3>Печать</h3>
+    <br>
+    <form method="post">
+        <input type="submit" class="btn btn-primary" value="Печать выбраных"><br>
+        <br>
+        <table border = '2' class="demoTable" style="height: 54px; width: 1300px; border-style: outset;  margin-left: auto; margin-right: auto; " cellpadding="5">
+            <thead>
+                <tr style="height: 24px;">
+                    <td style="width: 100px; height: 24px; text-align: center;"><span style="color: #c82828;"><strong></strong></span></td>
+                    <td style="width: 1000px; height: 24px; text-align: center;"><span style="color: #c000000;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Работы</strong></span></td>
+                    <td style="width: 100px; height: 24px; text-align: center;"><span style="color: #c82828;"><strong></strong></span></td>
+                    <td style="width: 100px; height: 24px; text-align: center;"><span style="color: #c82828;"><strong></strong></span></td>
+                </tr>
+            </thead>
+            <thead>
+                <tr style="height: 24px;">
+                    <td style="width: 100px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Выбор</strong></span></td>
+                    <td style="width: 1000px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Наименование</strong></span></td>
+                    <td style="width: 100px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Цена</strong></span></td>
+                    <td style="width: 100px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Кратность</strong></span></td>
+                </tr>
+            </thead>
+            {% for el in acceptence_paste %}
+                <tbody>
+                    <tr style="height: 36px;">
+                        <td style="width: 100px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);"><input type="checkbox" name="id" value='{{ el.id }}'><br></td>
+                        <td style="width: 1000px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.name_of_work }}</td>
+                        <td style="width: 100px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.cost }}</td>
+                        <td style="width: 100px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);"><input type="integer" name="amount_acceptence" id='amount_acceptence' style="width: 98px; height: 34px;" class="form-control" value="1" placeholder="Введите количество" required><br></td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+        <table border = '2' class="demoTable" style="height: 54px; width: 1300px; border-style: outset;  margin-left: auto; margin-right: auto; " cellpadding="5">
+             <thead>
+                <tr style="height: 24px;">
+                    <td style="width: 50px; height: 24px; text-align: end;"><span style="color: #c82828;"><strong></strong></span></td>
+                    <td style="height: 24px; text-align: center;"><span style="color: #c82828;"><strong></strong></span></td>
+                    <td style="height: 24px; text-align: center;"><span style="color: #c82828;"><strong></strong></span></td>
+                    <td style="width: 150px; height: 24px; text-align: end;"><span style="color: #c000000;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Детали</strong></span></td>
+                    <td style="height: 24px; text-align: center;"><span style="color: #c82828;"><strong></strong></span></td>
+                    <td style="height: 24px; text-align: center;"><span style="color: #c82828;"><strong></strong></span></td>
+                    <td style="height: 24px; text-align: center;"><span style="color: #c82828;"><strong></strong></span></td>
+                </tr>
+            </thead>
+            <thead>
+                <tr style="height: 24px;">
+                    <td style="width: 50px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Выбор</strong></span></td>
+                    <td style="width: 50px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Номер</strong></span></td>
+                    <td style="width: 450px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Наименование</strong></span></td>
+                    <td style="width: 150px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Цена</strong></span></td>
+                    <td style="width: 100px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Количество</strong></span></td>
+                    <td style="height: 24px; width: 250px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Марка</strong></span></td>
+                    <td style="height: 24px; width: 250px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Модель</strong></span></td>
+                </tr>
+            </thead>
+            {% for el in stock_paste %}
+                <tbody>
+                    <tr style="height: 36px;">
+                        <td style="width: 50px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);"><input type="checkbox" name="id" value='{{ el.id }}a'><br></td>
+                        <td style="width: 50px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.id }}</td>
+                        <td style="width: 450px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.name }}</td>
+                        <td style="width: 150px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.cost }}</td>
+                        <td style="width: 100px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);"><input type="integer" name="amount_stock" id='amount_stock' style="width: 98px; height: 34px;" class="form-control" value="1" placeholder="Введите количество" required><br></td>
+                        <td style="height: 36px; width: 250px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.brand }}</td>
+                        <td style="height: 36px; width: 250px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.model }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </form>
+</div>
+{% endblock %}

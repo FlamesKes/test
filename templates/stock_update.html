@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3>Редактировать содержание</h3>
+    <form method="post" id="work_add">
+        <input type="string(100)" name="name" id="name" class="form-control" value="{{ stock_update.name }}" placeholder="Введите наименование детали" required><br>
+        <input type="integer" name="cost" id='cost' class="form-control" value="{{ stock_update.cost }}" placeholder="Введите цену" required><br>
+        <input type="integer" name="amount" id='amount' class="form-control" value="{{ stock_update.amount }}" placeholder="Введите количество" required><br>
+        <input type="string(30)" name="brand" id='brand' class="form-control" value="{{ stock_update.brand }}" placeholder="Введите марку машины" required><br>
+        <input type="string(30)" name="model" id='model' class="form-control" value="{{ stock_update.model }}" placeholder="Введите модель машины" required><br>
+        <input type="submit" class="btn btn-success" value="Редактировать" form="work_add"><br>
+    </form>
+</div>
+{% endblock %}

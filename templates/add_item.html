@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Добавить деталь на склад
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3>Добавить деталь</h3>
+    <form method="post">
+        <input type="string(100)" name="name" id="name" class="form-control" placeholder="Введите наименование детали" required><br>
+        <input type="integer" name="cost" id='cost' class="form-control" placeholder="Введите цену" required><br>
+        <input type="integer" name="amount" id='amount' class="form-control" placeholder="Введите количество" required><br>
+        <input type="string(30)" name="brand" id='brand' class="form-control" placeholder="Введите марку машины" required><br>
+        <input type="string(30)" name="model" id='model' class="form-control" placeholder="Введите модель машины" required><br>
+        <input type="submit" class="btn btn-success" value="Добавить"><br>
+    </form>
+</div>
+{% endblock %}

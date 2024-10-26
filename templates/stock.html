@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Склад
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3>Информация о складе</h3>
+    <br>
+    <table border = '2' class="demoTable" style="height: 54px; width: 1300px; border-style: outset;  margin-left: auto; margin-right: auto; " cellpadding="5">
+        <thead>
+            <tr style="height: 24px;">
+                <td style="width: 50px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Выбор</strong></span></td>
+                <td style="width: 250px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Номер</strong></span></td>
+                <td style="width: 250px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Наименование</strong></span></td>
+                <td style="width: 250px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Цена</strong></span></td>
+                <td style="width: 250px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Количество</strong></span></td>
+                <td style="height: 24px; width: 250px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Марка</strong></span></td>
+                <td style="height: 24px; width: 250px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Модель</strong></span></td>
+                <td style="width: 50px; height: 24px; text-align: center; border: 1px solid rgb(0, 0, 0);"><span style="color: #c82828;"><strong>Редактировать</strong></span></td>
+            </tr>
+        </thead>
+        <form method="post">
+            {% for el in stock_show %}
+                <tbody>
+                    <tr style="height: 36px;">
+                        <td style="width: 50px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);"><input type="checkbox" name="id" value='{{ el.id }}'><br></td>
+                        <td style="width: 387px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.id }}</td>
+                        <td style="width: 387px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.name }}</td>
+                        <td style="width: 387px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.cost }}</td>
+                        <td style="width: 387px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.amount }}</td>
+                        <td style="height: 36px; width: 389px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.brand }}</td>
+                        <td style="height: 36px; width: 279px; text-align: center; border: 1px solid rgb(0, 0, 0);">{{ el.model }}</td>
+                        <td style="width: 50px; height: 36px; text-align: center; border: 1px solid rgb(0, 0, 0);"><a href="/stock/{{ el.id }}/update" class="btn btn-secondary btn-lg" value="  "></a></td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+            <input type="submit" class="btn btn-danger" value="Удалить выбранные"><br>
+            <br>
+        </form>
+    </table>
+</div>
+{% endblock %}

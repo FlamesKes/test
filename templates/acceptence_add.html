@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Добавить работу
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3>Добавить работу</h3>
+    <form method="post">
+        <input type="string(200)" name="name" id="name" class="form-control" placeholder="Введите наименование работы" required><br>
+        <input type="integer" name="cost" id='cost' class="form-control" placeholder="Введите цену" required><br>
+        <input type="submit" class="btn btn-success" value="Добавить"><br>
+    </form>
+</div>
+{% endblock %}

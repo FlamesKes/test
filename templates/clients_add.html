@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Добавить клиента
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3>Добавить клиента</h3>
+    <form method="post">
+        <input type="string(50)" name="f" id="f" class="form-control" placeholder="Введите фамилию" required><br>
+        <input type="string(50)" name="i" id='i' class="form-control" placeholder="Введите имя" required><br>
+        <input type="string(50)" name="o" id='o' class="form-control" placeholder="Введите отчество" required><br>
+        <input type="string(50)" name="brand" id='brand' class="form-control" placeholder="Введите марку" required><br>
+        <input type="string(50)" name="model" id='model' class="form-control" placeholder="Введите модель" required><br>
+        <input type="submit" class="btn btn-success" value="Добавить"><br>
+    </form>
+</div>
+{% endblock %}
